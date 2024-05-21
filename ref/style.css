@@ -179,7 +179,7 @@ form {
   border-radius: 2px;
   cursor: pointer;
 }
-.error {
+.invalid-feedback {
   color: red;
   background-color: yellow;
   font-size: 1.2rem;
