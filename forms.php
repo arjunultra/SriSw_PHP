@@ -106,7 +106,7 @@
             <div class="form-group">
                 <label id="name-label" for="name">Name</label>
                 <input type="text" name="name" class="form-control <?php echo $nameValid; ?>"
-                    value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>" required>
+                    value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
                 <!-- Display validation feedback only if there's a submission attempt -->
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $nameValid == "is-invalid"): ?>
                     <div class="invalid-feedback">Please enter a valid name.</div>
@@ -115,7 +115,7 @@
             <div class="form-group">
                 <label id="email-label" for="email">Email</label>
                 <input type="email" name="email" class="form-control <?php echo $emailValid; ?>"
-                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>" required>
+                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
                 <!-- Display validation feedback -->
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $emailValid == "is-invalid"): ?>
                     <div class="invalid-feedback">Please enter a valid email address.</div>
@@ -123,8 +123,8 @@
             </div>
             <div class="form-group">
                 <label id="number-label" for="number">Age<span class="clue"></span></label>
-                <input type="text" name="age" class="form-control <?php echo $ageValid; ?>"
-                    value="<?php echo isset($_POST['age']) ? htmlspecialchars($_POST['age']) : ''; ?>" required>
+                <input type="number" min="18" max="90" name="age" class="form-control <?php echo $ageValid; ?>"
+                    value="<?php echo isset($_POST['age']) ? htmlspecialchars($_POST['age']) : ''; ?>">
                 <!-- Display validation feedback -->
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $ageValid == "is-invalid"): ?>
                     <div class="invalid-feedback">Please enter a valid age.</div>
