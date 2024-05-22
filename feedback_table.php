@@ -53,7 +53,7 @@ $result = mysqli_query($conn, $sql);
                                 <td><?php echo $row["name"] ?></td>
                                 <td><?php echo $row["email"] ?></td>
                                 <td><?php echo $row["age"] ?></td>
-                                <td class='d-flex'> <a class="btn btn-outline-primary w-50 me-2"
+                                <td class='d-flex'> <a target="_blank" class="btn btn-outline-primary w-50 me-2"
                                         href="forms.php?update_id=<?php echo $row['id']; ?>">Update</a>
                                     <a class="btn btn-danger w-50"
                                         href="forms.php?delete_id=<?php echo $row['id']; ?>">DELETE</a>
@@ -61,7 +61,7 @@ $result = mysqli_query($conn, $sql);
                             </tr>
                         <?php }
                     } else {
-                        echo "<tr><td class='bg-danger text-light text-center fw-bold h' colspan='5'>No results found</td></tr>";
+                        echo "<tr><td class='bg-danger text-light text-center fw-bold h1' colspan='5'>No results found</td></tr>";
                     }
                     ?>
                 </tbody>
@@ -74,10 +74,9 @@ $result = mysqli_query($conn, $sql);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
+    <?php
+    mysqli_close($conn);
+    ?>
 </body>
 
 </html>
-
-<?php
-mysqli_close($conn);
-?>
