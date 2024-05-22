@@ -11,7 +11,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
+// Getting Data from feedback_form table in mydb
 $sql = "SELECT * FROM feedback_form";
 $result = mysqli_query($conn, $sql);
 ?>
@@ -42,22 +42,26 @@ $result = mysqli_query($conn, $sql);
                 </thead>
                 <tbody>
                     <?php
-                    if (mysqli_num_rows($result) > 0) {
+                    if (mysqli_num_rows($result) == !empty($result)) {
                         // Fetch all data at once and store it in an associative array
                         $allRows = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
                         // Iterate through each row using a foreach loop
-                        foreach ($allRows as $row) {
-                            echo "<tr>";
-                            echo "<td>" . $row["id"] . "</td>";
-                            echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
-                            echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
-                            echo "<td>" . $row["age"] . "</td>";
-                            echo "<td class='d-flex'>" . "<a href='#'class='w-50 btn btn-primary me-2'>UPDATE</a>" . "" . "<a href='#'class='w-50 btn btn-danger'>DELETE</a>" . "</td>";
-                            echo "</tr>";
-                        }
+                        foreach ($allRows as $row) { ?>
+                            <tr>
+                                <td><?php echo $row["id"] ?></td>
+                                <td><?php echo $row["name"] ?></td>
+                                <td><?php echo $row["email"] ?></td>
+                                <td><?php echo $row["age"] ?></td>
+                                <td class='d-flex'> <a class="btn btn-outline-primary w-50 me-2"
+                                        href="forms.php?update_id=<?php echo $row['id']; ?>">Update</a>
+                                    <a class="btn btn-danger w-50"
+                                        href="forms.php?delete_id=<?php echo $row['id']; ?>">DELETE</a>
+                                </td>
+                            </tr>
+                        <?php }
                     } else {
-                        echo "<tr><td colspan='4'>No results found</td></tr>";
+                        echo "<tr><td class='bg-danger text-light text-center fw-bold h' colspan='5'>No results found</td></tr>";
                     }
                     ?>
                 </tbody>
