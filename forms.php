@@ -42,14 +42,14 @@
         }
 
         // Validate Email using regex
-        if (!preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
+        if (empty($email) || !preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/", $email)) {
             $emailValid = "is-invalid";
         } else {
             $emailValid = "is-valid";
         }
 
         // Validate Age: Allow integers only
-        if (!preg_match("/^[0-9]{1,2}$/", $age)) {
+        if (empty($age) || !preg_match("/^[0-9]{1,2}$/", $age)) {
             $ageValid = "is-invalid";
         } else {
             $ageValid = "is-valid";
