@@ -37,6 +37,7 @@ $result = mysqli_query($conn, $sql);
                         <th>Name</th>
                         <th>Email</th>
                         <th>Age</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,6 +53,7 @@ $result = mysqli_query($conn, $sql);
                             echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
                             echo "<td>" . htmlspecialchars($row["email"]) . "</td>";
                             echo "<td>" . $row["age"] . "</td>";
+                            echo "<td class='d-flex'>" . "<a href='#'class='w-50 btn btn-primary me-2'>UPDATE</a>" . "" . "<a href='#'class='w-50 btn btn-danger'>DELETE</a>" . "</td>";
                             echo "</tr>";
                         }
                     } else {
