@@ -69,6 +69,18 @@ $result = mysqli_query($conn, $sql);
                     ?>
                 </tbody>
             </table>
+            <?php
+            // Delete functionality
+            if (isset($_GET['delete_id']) && !empty($_GET['delete_id'])) {
+                $delete_id = $_GET['delete_id'];
+                $sql = "DELETE FROM feedback_form WHERE id=$delete_id";
+                if (mysqli_query($conn, $sql)) {
+                    echo ("<h5 class='d-inline-block p-2 text-center text-danger fw-bold border border-danger'>Record Deleted Successfully</h2>");
+                } else {
+                    echo "Error deleting record: " . mysqli_error($conn);
+                }
+            }
+            ?>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"

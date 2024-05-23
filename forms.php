@@ -53,6 +53,9 @@
         }
     }
 
+
+
+
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
@@ -87,6 +90,7 @@
                 $update_id = $_POST['update_id'];
                 $stmt = mysqli_prepare($conn, "UPDATE feedback_form SET name=?, email=?, age=? WHERE id=?");
                 mysqli_stmt_bind_param($stmt, "ssii", $name, $email, $age, $update_id);
+                header("location:feedback_table.php");
             } else {
                 // Attempt to create table only if it doesn't exist
                 $sql = "CREATE TABLE IF NOT EXISTS feedback_form (
@@ -100,6 +104,7 @@
                     // Inserting new data
                     $stmt = mysqli_prepare($conn, "INSERT INTO feedback_form (name, email, age) VALUES (?, ?, ?)");
                     mysqli_stmt_bind_param($stmt, "ssi", $name, $email, $age);
+
                 } else {
                     echo "Error creating table: " . mysqli_error($conn);
                 }
@@ -111,7 +116,6 @@
             } else {
                 mysqli_stmt_close($stmt);
                 mysqli_close($conn);
-                redirect('forms.php');
             }
         }
     }
@@ -135,7 +139,7 @@
                 <label id="name-label" for="name">Name</label>
 
                 <input type="text" name="name" class="form-control <?php echo $nameValid; ?>"
-                    value="<?php echo $edit_name; ?>">
+                    value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?><?php echo $edit_name; ?>">
                 <!-- Display validation feedback only if there's a submission attempt -->
                 <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && $nameValid == "is-invalid"): ?>
                     <div class="invalid-feedback">Please enter a valid name.</div>
