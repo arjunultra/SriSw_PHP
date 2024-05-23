@@ -14,6 +14,9 @@ if (!$conn) {
 // Getting Data from feedback_form table in mydb
 $sql = "SELECT * FROM feedback_form";
 $result = mysqli_query($conn, $sql);
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +59,7 @@ $result = mysqli_query($conn, $sql);
                                 <td class='d-flex'> <a target="_blank" class="btn btn-outline-primary w-50 me-2"
                                         href="forms.php?update_id=<?php echo $row['id']; ?>">Update</a>
                                     <a class="btn btn-danger w-50"
-                                        href="forms.php?delete_id=<?php echo $row['id']; ?>">DELETE</a>
+                                        href="feedback_table.php?delete_id=<?php echo $row['id']; ?>">DELETE</a>
                                 </td>
                             </tr>
                         <?php }
